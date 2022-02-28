@@ -1,6 +1,5 @@
 require 'minitest/autorun'
 require 'timeout'
-require 'pry-byebug'
 
 class CustomerSuccessBalancing
   def initialize(customer_success, customers, away_customer_success)
