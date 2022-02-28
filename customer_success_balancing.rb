@@ -37,10 +37,10 @@ class CustomerSuccessBalancing
       number_customers_by_cs[cs_search[:id]] += 1 unless cs_search.nil?
     end
 
-    verify_number_customers_by_cs
+    verify_number_customers_by_cs(number_customers_by_cs)
   end
 
-  def verify_number_customers_by_cs
+  def verify_number_customers_by_cs(number_customers_by_cs)
     return 0 if number_customers_by_cs.values.size != 1 && number_customers_by_cs.values.uniq.size == 1
 
     if !number_customers_by_cs.empty?
