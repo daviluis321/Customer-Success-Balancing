@@ -1,0 +1,16 @@
+AllCops:
+  DisplayCopNames: true
+  Exclude:
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'gemfiles/*'
+  TargetRubyVersion: 2.7
+
+Metrics/BlockLength:
+  Enabled: false
+
+Metrics/LineLength:
+  Max: 120
+
+Style/Documentation:
+  Enabled: false
