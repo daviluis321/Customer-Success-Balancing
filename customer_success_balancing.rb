@@ -11,12 +11,12 @@ class CustomerSuccessBalancing
   # Returns the ID of the customer success with most customers
   def execute
     customer_success = if @away_customer_success.empty?
-                        @customer_success
+                         @customer_success
                        else
-                        #customer_success_active
-                        customer_success = @customer_success.select do |cs|
-                          !@away_customer_success.include? cs[:id]
-                        end
+                         # customer_success_active
+                         customer_success = @customer_success.select do |cs|
+                           !@away_customer_success.include? cs[:id]
+                         end
                        end
 
     customer_success.sort_by! { |cs| cs[:score] }
@@ -25,23 +25,19 @@ class CustomerSuccessBalancing
 
     @customers.each do |customer|
       cs = customer_success.bsearch { |cs| cs[:score] >= customer[:score] }
-      unless cs.nil?
-        number_customers_by_cs[cs[:id]] += 1
-      end
+      number_customers_by_cs[cs[:id]] += 1 unless cs.nil?
     end
 
-    if number_customers_by_cs.values.size != 1 && number_customers_by_cs.values.uniq.size == 1
-      return 0
-    end
+    return 0 if number_customers_by_cs.values.size != 1 && number_customers_by_cs.values.uniq.size == 1
 
-    if  !number_customers_by_cs.empty?
-      number_customers_by_cs.max_by{|k,v| v}[0]
+    if !number_customers_by_cs.empty?
+      number_customers_by_cs.max_by { |_k, v| v }[0]
     else
-      return 0
+      0
     end
   end
 
   # def customer_success_active
   #  next
-  #end
+  # end
 end

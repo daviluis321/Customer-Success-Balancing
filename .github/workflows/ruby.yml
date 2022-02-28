@@ -35,3 +35,7 @@ jobs:
       run: |
          bundle install
          ruby customer_success_balancing_test.rb
+    - name: Run Rubocop
+      run: |
+         bundle exec rubocop
+
