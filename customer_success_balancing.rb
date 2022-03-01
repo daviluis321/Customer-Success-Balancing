@@ -2,7 +2,6 @@
 
 require 'minitest/autorun'
 require 'timeout'
-
 class CustomerSuccessBalancing
   def initialize(customer_success, customers, away_customer_success)
     @customer_success = customer_success
@@ -12,21 +11,27 @@ class CustomerSuccessBalancing
 
   # Returns the ID of the customer success with most customers
   def execute
-    customer_success = if @away_customer_success.empty?
+    available_customer_success = if @away_customer_success.empty?
                          @customer_success
                        else
                          customer_success_active
                        end
 
-    customer_success.sort_by! { |cs| cs[:score] }
+    sort_customer_success(available_customer_success)
 
-    search_customers_by_cs(customer_success)
+    search_customers_by_cs(available_customer_success)
   end
+
+  private
 
   def customer_success_active
     @customer_success.reject do |cs|
       @away_customer_success.include? cs[:id]
     end
+  end
+
+  def sort_customer_success(customer_success)
+    customer_success.sort_by! { |cs| cs[:score] }
   end
 
   def search_customers_by_cs(customer_success)
