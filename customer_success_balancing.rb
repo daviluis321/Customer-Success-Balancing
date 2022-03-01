@@ -39,7 +39,7 @@ class CustomerSuccessBalancing
 
     @customers.each do |customer|
       cs_search = customer_success.bsearch { |cs| cs[:score] >= customer[:score] }
-      number_customers_by_cs[cs_search[:id]] += 1 if !cs_search.nil?
+      number_customers_by_cs[cs_search[:id]] += 1 unless cs_search.nil?
     end
 
     verify_number_customers_by_cs(number_customers_by_cs)
