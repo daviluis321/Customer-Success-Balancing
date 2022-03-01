@@ -69,6 +69,16 @@ class CustomerSuccessBalancingTests < Minitest::Test
     assert_equal 3, balancer.execute
   end
 
+
+  def test_lowest_cs_score_by_customer
+    balancer = CustomerSuccessBalancing.new(
+      build_scores([10, 20, 30]),
+      build_scores([60,80]),
+      []
+    )
+    assert_equal 0, balancer.execute
+  end
+
   private
 
   def build_scores(scores)
