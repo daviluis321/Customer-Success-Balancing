@@ -12,10 +12,10 @@ class CustomerSuccessBalancing
   # Returns the ID of the customer success with most customers
   def execute
     available_customer_success = if @away_customer_success.empty?
-                         @customer_success
-                       else
-                         customer_success_active
-                       end
+                                   @customer_success
+                                 else
+                                   customer_success_active
+                                 end
 
     sort_customer_success(available_customer_success)
 
@@ -46,8 +46,8 @@ class CustomerSuccessBalancing
   end
 
   def verify_number_customers_by_cs(number_customers_by_cs)
-    values = number_customers_by_cs.values
-    return 0 if values.size != 1 && values.uniq.size == 1
+    cs_score = number_customers_by_cs.values
+    return 0 if cs_score.size != 1 && cs_score.uniq.size == 1
 
     if !number_customers_by_cs.empty?
       number_customers_by_cs.max_by { |_id, score| score }[0]
