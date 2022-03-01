@@ -41,10 +41,11 @@ class CustomerSuccessBalancing
   end
 
   def verify_number_customers_by_cs(number_customers_by_cs)
-    return 0 if number_customers_by_cs.values.size != 1 && number_customers_by_cs.values.uniq.size == 1
+    values = number_customers_by_cs.values
+    return 0 if values.size != 1 && values.uniq.size == 1
 
     if !number_customers_by_cs.empty?
-      number_customers_by_cs.max_by { |_k, v| v }[0]
+      number_customers_by_cs.max_by { |id, score| score }[0]
     else
       0
     end
