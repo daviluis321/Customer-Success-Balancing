@@ -45,7 +45,7 @@ class CustomerSuccessBalancing
     return 0 if values.size != 1 && values.uniq.size == 1
 
     if !number_customers_by_cs.empty?
-      number_customers_by_cs.max_by { |id, score| score }[0]
+      number_customers_by_cs.max_by { |_id, score| score }[0]
     else
       0
     end
