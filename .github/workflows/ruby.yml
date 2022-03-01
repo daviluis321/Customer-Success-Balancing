@@ -33,7 +33,6 @@ jobs:
         bundler-cache: true # runs 'bundle install' and caches installed gems automatically
     - name: Run tests
       run: |
-         bundle install
          ruby customer_success_balancing_test.rb
     - name: Run Rubocop
       run: |

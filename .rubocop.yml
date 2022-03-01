@@ -4,7 +4,6 @@ AllCops:
     - 'tmp/**/*'
     - 'vendor/**/*'
     - 'gemfiles/*'
-  TargetRubyVersion: 2.7
 
 Metrics/BlockLength:
   Enabled: false
