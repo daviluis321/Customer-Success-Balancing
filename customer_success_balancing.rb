@@ -17,6 +17,8 @@ class CustomerSuccessBalancing
                                    customer_success_active
                                  end
 
+    return 0 if available_customer_success.nil?
+
     sort_customer_success(available_customer_success)
 
     search_customers_by_cs(available_customer_success)
@@ -25,7 +27,7 @@ class CustomerSuccessBalancing
   private
 
   def customer_success_active
-    @customer_success.reject do |cs|
+    @customer_success.reject! do |cs|
       @away_customer_success.include? cs[:id]
     end
   end

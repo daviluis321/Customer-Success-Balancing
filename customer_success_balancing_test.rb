@@ -78,6 +78,33 @@ class CustomerSuccessBalancingTests < Minitest::Test
     assert_equal 0, balancer.execute
   end
 
+  def test_cs_support_more_than_one_customer
+    balancer = CustomerSuccessBalancing.new(
+      build_scores([50]),
+      build_scores([20, 30, 35, 40]),
+      []
+    )
+    assert_equal 1, balancer.execute
+  end
+
+  def test_clients_without_support_cd
+    balancer = CustomerSuccessBalancing.new(
+      build_scores([50, 100]),
+      build_scores([20, 30, 35, 40]),
+      [50, 100]
+    )
+    assert_equal 0, balancer.execute
+  end
+
+  def test_values_clients_and_cs_empty
+    balancer = CustomerSuccessBalancing.new(
+      [],
+      [],
+      []
+    )
+    assert_equal 0, balancer.execute
+  end
+
   private
 
   def build_scores(scores)
